@@ -200,6 +200,29 @@
     flex-shrink: 0;
 }
 
+.walletInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.walletAddress {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--md-on-surface);
+    font-family: var(--font-mono, 'Fira Code', monospace);
+}
+
+.walletBalance {
+    font-size: 12px;
+    color: var(--md-on-surface-faint);
+    padding-left: 20px;
+}
+
+
 .floatingToggle {
     position: fixed;
     top: var(--space-md);

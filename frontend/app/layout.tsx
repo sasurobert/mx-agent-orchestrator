@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import { DappInitializer } from './components/DappInitializer';
+import { NetworkSwitch } from './components/NetworkSwitch';
 
 export const metadata: Metadata = {
     title: 'Agent Orchestrator — MultiversX Agent Economy',
@@ -20,7 +22,10 @@ export default function RootLayout({
                 <link rel="icon" href="/favicon.ico" />
             </head>
             <body>
-                {children}
+                <DappInitializer>
+                    <NetworkSwitch />
+                    {children}
+                </DappInitializer>
             </body>
         </html>
     );

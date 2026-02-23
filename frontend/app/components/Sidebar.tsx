@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { useWallet } from '../hooks/useWallet';
 import styles from './Sidebar.module.css';
 
 interface JobEntry {
@@ -26,6 +27,32 @@ interface SidebarProps {
 
 export function Sidebar({ activePage = 'home' }: SidebarProps) {
     const [open, setOpen] = useState(true);
+    const { isLoggedIn, truncatedAddress, formattedBalance, egldLabel } = useWallet();
+
+    const handleConnect = useCallback(async () => {
+        try {
+            const { UnlockPanelManager } = await import('@multiversx/sdk-dapp/out/managers/UnlockPanelManager');
+            const unlockPanelManager = UnlockPanelManager.init({
+                loginHandler: () => {
+                    // Stays on the same page after login
+                },
+            });
+            unlockPanelManager.openUnlockPanel();
+        } catch (err) {
+            console.error('[Sidebar] Failed to open UnlockPanel:', err);
+        }
+    }, []);
+
+    const handleDisconnect = useCallback(async () => {
+        try {
+            const { getAccountProvider } = await import('@multiversx/sdk-dapp/out/providers/helpers/accountProvider');
+            const { logout } = await import('@multiversx/sdk-dapp/out/providers/DappProvider/helpers/logout/logout');
+            const provider = getAccountProvider() as any;
+            await logout({ provider });
+        } catch (err) {
+            console.error('[Sidebar] Failed to logout:', err);
+        }
+    }, []);
 
     return (
         <>
@@ -76,9 +103,35 @@ export function Sidebar({ activePage = 'home' }: SidebarProps) {
                 </div>
 
                 <div className={styles.footer}>
-                    <button className="btn btn-outlined" style={{ width: '100%', fontSize: 13 }} id="connect-wallet-btn">
-                        Connect Wallet
-                    </button>
+                    {isLoggedIn ? (
+                        <div className={styles.walletInfo}>
+                            <div className={styles.walletAddress}>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2">
+                                    <rect width="20" height="14" x="2" y="5" rx="2" /><path d="M2 10h20" />
+                                </svg>
+                                <span>{truncatedAddress}</span>
+                            </div>
+                            <span className={styles.walletBalance}>{formattedBalance} {egldLabel}</span>
+                            <button
+                                className="btn btn-outlined"
+                                style={{ width: '100%', fontSize: 12, padding: '6px 0' }}
+                                onClick={handleDisconnect}
+                                data-testid="disconnect-wallet-btn"
+                            >
+                                Disconnect
+                            </button>
+                        </div>
+                    ) : (
+                        <button
+                            className="btn btn-outlined"
+                            style={{ width: '100%', fontSize: 13 }}
+                            id="connect-wallet-btn"
+                            onClick={handleConnect}
+                            data-testid="connect-wallet-btn"
+                        >
+                            Connect Wallet
+                        </button>
+                    )}
                 </div>
             </aside>
 

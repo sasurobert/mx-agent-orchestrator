@@ -1,0 +1,103 @@
+.wrapper {
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 1100;
+    font-family: var(--font-body);
+}
+
+.pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    color: var(--md-on-surface);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.pill:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.label {
+    letter-spacing: 0.02em;
+}
+
+.chevron {
+    transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+    transform: rotate(180deg);
+}
+
+.dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 160px;
+    padding: 4px;
+    background: rgba(15, 20, 35, 0.95);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    animation: dropIn 0.15s ease;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 8px 12px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    color: var(--md-on-surface);
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.option:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.optionActive {
+    background: rgba(34, 209, 238, 0.08);
+    color: var(--color-primary);
+}
+
+.option svg {
+    margin-left: auto;
+    color: var(--color-primary);
+}
+
+@keyframes dropIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
