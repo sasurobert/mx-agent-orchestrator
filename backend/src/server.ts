@@ -14,6 +14,7 @@ import { RouterService, createRouterRouter } from './router';
 import { PaymentService, createPaymentRouter } from './payment';
 import { AggregatorService, createAggregatorRouter } from './aggregator';
 import { FeedbackService, createFeedbackRouter } from './feedback';
+import { A2AService } from './a2a';
 
 const app = express();
 
@@ -35,6 +36,7 @@ const routerService = new RouterService();
 const paymentService = new PaymentService(config.chainId, config.x402FacilitatorUrl);
 const aggregatorService = new AggregatorService(llm);
 const feedbackService = new FeedbackService();
+const a2aService = new A2AService();
 
 // Agent provider stub — will be replaced with real blockchain queries
 const agentProvider = {
@@ -83,9 +85,14 @@ app.use((err: Error, _req: express.Request, res: express.Response, _next: expres
 export { app };
 
 if (require.main === module) {
-    app.listen(config.port, () => {
+    app.listen(config.port, async () => {
         console.log(`🚀 mx-agent-orchestrator backend running on port ${config.port}`);
         console.log(`   Chain: ${config.chainId} | API: ${config.apiUrl}`);
         console.log(`   LLM: ${config.llm.provider} / ${config.llm.model}`);
+
+        // Initialize A2A authentication identity
+        await a2aService.initialize().catch(err => {
+            console.error('[A2A] Failed to initialize Orchestrator wallet:', err.message);
+        });
     });
 }

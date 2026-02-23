@@ -19,9 +19,8 @@ test.describe('Navigation & Page Loading', () => {
 
         // Wait for Vanta.js to initialize (it creates a canvas element)
         await page.waitForTimeout(2000);
-        const canvas = page.locator('canvas');
-        const count = await canvas.count();
-        expect(count).toBeGreaterThanOrEqual(1);
+        const vantaBg = page.locator('[class*="vantaBg"]');
+        await expect(vantaBg).toBeVisible();
     });
 
     test('sidebar renders with all expected sections', async ({ page }) => {
@@ -39,7 +38,7 @@ test.describe('Navigation & Page Loading', () => {
         await expect(page.locator('text=Recent Jobs')).toBeVisible();
 
         // Connect Wallet button (when not logged in)
-        await expect(page.locator('[data-testid="connect-wallet-btn"], text=Connect Wallet')).toBeVisible();
+        await expect(page.locator('[data-testid="connect-wallet-btn"]')).toBeVisible();
     });
 
     test('sidebar collapse and expand works', async ({ page }) => {
@@ -52,7 +51,7 @@ test.describe('Navigation & Page Loading', () => {
         await toggleBtn.click();
 
         // Sidebar should be collapsed — "Orchestrator" text hidden
-        await expect(page.locator('text=Orchestrator')).not.toBeVisible();
+        await expect(page.locator('aside')).toHaveClass(/closed/);
 
         // Floating toggle should appear
         const floatingToggle = page.locator('button[aria-label="Open sidebar"]');
@@ -60,7 +59,7 @@ test.describe('Navigation & Page Loading', () => {
 
         // Click floating toggle to reopen
         await floatingToggle.click();
-        await expect(page.locator('text=Orchestrator')).toBeVisible();
+        await expect(page.locator('aside')).toHaveClass(/open/);
     });
 
     test('navigate to discover page', async ({ page }) => {

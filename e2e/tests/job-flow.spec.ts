@@ -42,9 +42,7 @@ test.describe('Job Flow', () => {
         await page.waitForLoadState('networkidle');
 
         // Cost or payment section should be present
-        const costSection = page.locator(
-            '[class*="cost"], [class*="payment"], [class*="price"], text=USDC, text=Total'
-        );
+        const costSection = page.locator('text=TOTAL COST');
         const count = await costSection.count();
         expect(count).toBeGreaterThanOrEqual(1);
     });

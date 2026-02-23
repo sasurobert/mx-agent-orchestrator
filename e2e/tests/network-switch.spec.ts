@@ -27,9 +27,9 @@ test.describe('Network Switch', () => {
         await pill.click();
 
         // All three options should be visible
-        await expect(page.locator('text=Devnet')).toBeVisible();
-        await expect(page.locator('text=Testnet')).toBeVisible();
-        await expect(page.locator('text=Mainnet')).toBeVisible();
+        await expect(page.getByRole('button', { name: 'Devnet', exact: true })).toBeVisible();
+        await expect(page.getByRole('button', { name: 'Testnet', exact: true })).toBeVisible();
+        await expect(page.getByRole('button', { name: 'Mainnet', exact: true })).toBeVisible();
     });
 
     test('selecting a network updates the display', async ({ page }) => {
@@ -41,7 +41,7 @@ test.describe('Network Switch', () => {
         await pill.click();
 
         // Click Testnet
-        await page.locator('button:has-text("Testnet")').click();
+        await page.getByRole('button', { name: 'Testnet', exact: true }).click();
 
         // Verify switch updated
         const networkSwitch = page.locator('[data-testid="network-switch"]');

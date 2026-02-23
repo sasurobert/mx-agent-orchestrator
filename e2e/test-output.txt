@@ -1,0 +1,154 @@
+
+Running 38 tests using 5 workers
+
+[1A[2K[1/38] [desktop-chrome] › tests/accessibility.spec.ts:47:9 › Accessibility › page uses semantic HTML elements
+[1A[2K[2/38] [desktop-chrome] › tests/accessibility.spec.ts:25:9 › Accessibility › sidebar toggle has aria-label
+[1A[2K[3/38] [desktop-chrome] › tests/accessibility.spec.ts:61:9 › Accessibility › images have alt attributes
+[1A[2K[4/38] [desktop-chrome] › tests/accessibility.spec.ts:4:9 › Accessibility › all interactive elements are reachable via Tab
+[1A[2K[5/38] [desktop-chrome] › tests/accessibility.spec.ts:36:9 › Accessibility › network switch has aria attributes
+[1A[2K[6/38] [desktop-chrome] › tests/discover.spec.ts:17:9 › Discover Agents Page › agent cards display name and details
+[1A[2K[7/38] [desktop-chrome] › tests/discover.spec.ts:4:9 › Discover Agents Page › discover page loads with agent grid
+[1A[2K[8/38] [desktop-chrome] › tests/discover.spec.ts:27:9 › Discover Agents Page › sidebar is present on discover page
+[1A[2K[9/38] [desktop-chrome] › tests/discover.spec.ts:35:9 › Discover Agents Page › discover page has search or filter interaction
+[1A[2K[10/38] [desktop-chrome] › tests/discover.spec.ts:47:9 › Discover Agents Page › discover page is navigable from landing
+[1A[2K[11/38] [desktop-chrome] › tests/job-flow.spec.ts:4:9 › Job Flow › landing page has input bar to submit requests
+[1A[2K[12/38] [desktop-chrome] › tests/job-flow.spec.ts:13:9 › Job Flow › suggestion chips are clickable on landing
+[1A[2K[13/38] [desktop-chrome] › tests/job-flow.spec.ts:28:9 › Job Flow › job dashboard shows pipeline visualization
+[1A[2K[14/38] [desktop-chrome] › tests/job-flow.spec.ts:40:9 › Job Flow › job dashboard shows cost summary
+[1A[2K[15/38] [desktop-chrome] › tests/navigation.spec.ts:4:9 › Navigation & Page Loading › landing page loads with greeting and input bar
+[1A[2K[16/38] [desktop-chrome] › tests/navigation.spec.ts:16:9 › Navigation & Page Loading › Vanta.js background canvas renders
+[1A[2K[17/38] [desktop-chrome] › tests/navigation.spec.ts:26:9 › Navigation & Page Loading › sidebar renders with all expected sections
+[1A[2K[18/38] [desktop-chrome] › tests/navigation.spec.ts:44:9 › Navigation & Page Loading › sidebar collapse and expand works
+[1A[2K[19/38] [desktop-chrome] › tests/navigation.spec.ts:65:9 › Navigation & Page Loading › navigate to discover page
+[1A[2K[20/38] [desktop-chrome] › tests/navigation.spec.ts:76:9 › Navigation & Page Loading › navigate to job dashboard via sidebar
+[1A[2K[21/38] [desktop-chrome] › tests/navigation.spec.ts:88:9 › Navigation & Page Loading › deep link to /discover loads correctly
+[1A[2K[22/38] [desktop-chrome] › tests/navigation.spec.ts:96:9 › Navigation & Page Loading › deep link to /job loads correctly
+[1A[2K[23/38] [desktop-chrome] › tests/network-switch.spec.ts:4:9 › Network Switch › network switch is visible on the page
+[1A[2K[24/38] [desktop-chrome] › tests/network-switch.spec.ts:12:9 › Network Switch › network switch shows current network
+[1A[2K[25/38] [desktop-chrome] › tests/network-switch.spec.ts:22:9 › Network Switch › clicking network switch opens dropdown
+[1A[2K[26/38] [desktop-chrome] › tests/network-switch.spec.ts:35:9 › Network Switch › selecting a network updates the display
+[1A[2K[27/38] [desktop-chrome] › tests/network-switch.spec.ts:55:9 › Network Switch › network persists after page reload
+[1A[2K[28/38] [desktop-chrome] › tests/network-switch.spec.ts:71:9 › Network Switch › network switch has colored indicator dots
+[1A[2K  1) [desktop-chrome] › tests/network-switch.spec.ts:55:9 › Network Switch › network persists after page reload 
+
+    Test was interrupted.
+
+    Error: page.goto: Test ended.
+    Call log:
+    [2m  - navigating to "http://localhost:3100/", waiting until "load"[22m
+
+
+      54 |
+      55 |     test('network persists after page reload', async ({ page }) => {
+    > 56 |         await page.goto('/');
+         |                    ^
+      57 |         await page.waitForLoadState('networkidle');
+      58 |
+      59 |         // Set network to testnet via localStorage
+        at /Users/robertsasu/RustProjects/agentic-payments/mx-agent-orchestrator/e2e/tests/network-switch.spec.ts:56:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/network-switch-Network-Swi-f708f--persists-after-page-reload-desktop-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K  2) [desktop-chrome] › tests/network-switch.spec.ts:35:9 › Network Switch › selecting a network updates the display 
+
+    Test was interrupted.
+
+    Error: page.goto: Test ended.
+    Call log:
+    [2m  - navigating to "http://localhost:3100/", waiting until "load"[22m
+
+
+      34 |
+      35 |     test('selecting a network updates the display', async ({ page }) => {
+    > 36 |         await page.goto('/');
+         |                    ^
+      37 |         await page.waitForLoadState('networkidle');
+      38 |
+      39 |         // Open dropdown
+        at /Users/robertsasu/RustProjects/agentic-payments/mx-agent-orchestrator/e2e/tests/network-switch.spec.ts:36:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/network-switch-Network-Swi-10257-network-updates-the-display-desktop-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K  3) [desktop-chrome] › tests/network-switch.spec.ts:22:9 › Network Switch › clicking network switch opens dropdown 
+
+    Test was interrupted.
+
+    Error: page.goto: Test ended.
+    Call log:
+    [2m  - navigating to "http://localhost:3100/", waiting until "load"[22m
+
+
+      21 |
+      22 |     test('clicking network switch opens dropdown', async ({ page }) => {
+    > 23 |         await page.goto('/');
+         |                    ^
+      24 |         await page.waitForLoadState('networkidle');
+      25 |
+      26 |         const pill = page.locator('[data-testid="network-switch"] button').first();
+        at /Users/robertsasu/RustProjects/agentic-payments/mx-agent-orchestrator/e2e/tests/network-switch.spec.ts:23:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/network-switch-Network-Swi-6d140-twork-switch-opens-dropdown-desktop-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K  4) [desktop-chrome] › tests/network-switch.spec.ts:71:9 › Network Switch › network switch has colored indicator dots 
+
+    Test was interrupted.
+
+    Error: page.goto: Test ended.
+    Call log:
+    [2m  - navigating to "http://localhost:3100/", waiting until "load"[22m
+
+
+      70 |
+      71 |     test('network switch has colored indicator dots', async ({ page }) => {
+    > 72 |         await page.goto('/');
+         |                    ^
+      73 |         await page.waitForLoadState('networkidle');
+      74 |
+      75 |         // Open dropdown
+        at /Users/robertsasu/RustProjects/agentic-payments/mx-agent-orchestrator/e2e/tests/network-switch.spec.ts:72:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/network-switch-Network-Swi-08cb5--has-colored-indicator-dots-desktop-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K  5) [desktop-chrome] › tests/network-switch.spec.ts:12:9 › Network Switch › network switch shows current network 
+
+    Test was interrupted.
+
+    Error: page.goto: Test ended.
+    Call log:
+    [2m  - navigating to "http://localhost:3100/", waiting until "load"[22m
+
+
+      11 |
+      12 |     test('network switch shows current network', async ({ page }) => {
+    > 13 |         await page.goto('/');
+         |                    ^
+      14 |         await page.waitForLoadState('networkidle');
+      15 |
+      16 |         const networkSwitch = page.locator('[data-testid="network-switch"]');
+        at /Users/robertsasu/RustProjects/agentic-payments/mx-agent-orchestrator/e2e/tests/network-switch.spec.ts:13:20
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/network-switch-Network-Swi-3ef82-witch-shows-current-network-desktop-chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+[1A[2K  5 interrupted
+    [desktop-chrome] › tests/network-switch.spec.ts:12:9 › Network Switch › network switch shows current network 
+    [desktop-chrome] › tests/network-switch.spec.ts:22:9 › Network Switch › clicking network switch opens dropdown 
+    [desktop-chrome] › tests/network-switch.spec.ts:35:9 › Network Switch › selecting a network updates the display 
+    [desktop-chrome] › tests/network-switch.spec.ts:55:9 › Network Switch › network persists after page reload 
+    [desktop-chrome] › tests/network-switch.spec.ts:71:9 › Network Switch › network switch has colored indicator dots 
+  10 did not run
+  23 passed (24.7s)

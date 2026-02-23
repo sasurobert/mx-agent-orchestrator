@@ -9,12 +9,14 @@
         "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
         "test": "jest --forceExit --detectOpenHandles",
         "test:watch": "jest --watch",
-        "test:coverage": "jest --coverage"
+        "test:coverage": "jest --coverage",
+        "test:a2a": "ts-node scripts/test_a2a.ts"
     },
     "dependencies": {
         "@google/generative-ai": "^0.24.0",
         "@multiversx/sdk-core": "^15.0.0",
         "@multiversx/sdk-network-providers": "^2.0.0",
+        "@multiversx/sdk-wallet": "^4.6.0",
         "cors": "^2.8.5",
         "dotenv": "^16.4.0",
         "express": "^4.21.0",

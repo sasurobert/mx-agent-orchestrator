@@ -32,4 +32,10 @@ export const config = {
     // Server
     port: parseInt(process.env.BACKEND_PORT || '4001', 10),
     corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3001',
+
+    // Orchestrator A2A Wallet Identity
+    a2a: {
+        mnemonic: process.env.ORCHESTRATOR_WALLET_MNEMONIC || '',
+        pemPath: process.env.ORCHESTRATOR_WALLET_PEM || './test-wallet.pem',
+    }
 };
