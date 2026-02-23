@@ -1,0 +1,147 @@
+.discoverPage {
+    min-height: 100vh;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: var(--space-md) 0;
+    background: rgba(10, 14, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--md-outline-variant);
+}
+
+.navInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: var(--md-on-surface);
+}
+
+.logoIcon {
+    font-size: 24px;
+    color: var(--color-primary);
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.header {
+    margin-bottom: var(--space-xl);
+}
+
+.header h1 {
+    margin-bottom: var(--space-xs);
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.sortGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.filters {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-xl);
+}
+
+/* Agent Grid */
+.agentGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+}
+
+.agentCard {
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--space-md);
+}
+
+.agentName {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.cardStats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.statLabel {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--md-on-surface-faint);
+}
+
+.statValue {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--md-on-surface);
+}
+
+.cardSkills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.emptyState {
+    text-align: center;
+    padding: var(--space-3xl) 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .agentGrid {
+        grid-template-columns: 1fr;
+    }
+}

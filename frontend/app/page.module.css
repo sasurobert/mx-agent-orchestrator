@@ -1,0 +1,194 @@
+.landing {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ambient glow effect */
+.ambientGlow {
+    position: fixed;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 500px;
+    background: radial-gradient(ellipse, rgba(34, 209, 238, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Navigation */
+.nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: var(--space-md) 0;
+    background: rgba(10, 14, 26, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--md-outline-variant);
+}
+
+.navInner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.logoIcon {
+    font-size: 24px;
+    color: var(--color-primary);
+}
+
+.navLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+/* Hero */
+.hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.heroTitle {
+    margin-bottom: var(--space-lg);
+}
+
+.accentText {
+    color: var(--color-primary);
+}
+
+.heroSubtitle {
+    color: var(--md-on-surface-dim);
+    max-width: 640px;
+    margin: 0 auto var(--space-xl);
+}
+
+/* Request Bar */
+.requestBar {
+    display: flex;
+    gap: var(--space-sm);
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.requestBar .input-glass {
+    flex: 1;
+}
+
+.sendBtn {
+    flex-shrink: 0;
+    padding: 10px 28px;
+}
+
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-on-primary);
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Quick Prompts */
+.quickPrompts {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-lg);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Features */
+.features {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-2xl) 0;
+}
+
+.featureGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.featureCard {
+    padding: var(--space-xl);
+    text-align: left;
+}
+
+.featureIcon {
+    font-size: 36px;
+    margin-bottom: var(--space-md);
+}
+
+.featureCard h3 {
+    margin-bottom: var(--space-sm);
+}
+
+/* Stats */
+.stats {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-2xl) 0;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    text-align: center;
+}
+
+.statItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.statValue {
+    color: var(--color-primary);
+}
+
+/* Footer */
+.footer {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    border-top: 1px solid var(--md-outline-variant);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .featureGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .requestBar {
+        flex-direction: column;
+    }
+
+    .navLinks {
+        display: none;
+    }
+}
