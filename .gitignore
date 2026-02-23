@@ -7,8 +7,15 @@ dist/
 out/
 
 # Secrets (NEVER commit these)
-wallet.pem
 .env
+.env.local
+.env.*.local
+*.pem
+test-wallet.pem
+wallet.json
+
+# Orchestrator A2A wallet
+orchestrator-wallet.pem
 
 # Runtime data
 uploads/
@@ -34,3 +41,15 @@ e2e/test-results/
 e2e/playwright-report/
 e2e/blob-report/
 e2e/playwright/.cache/
+e2e/test-output.txt
+
+# Package manager locks (optional — keep package-lock.json for reproducibility)
+# package-lock.json
+
+# TypeScript
+*.tsbuildinfo
+
+# Log files
+*.log
+npm-debug.log*
+e2e/test-output*.txt
