@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Sidebar } from '../components/Sidebar';
 import styles from './discover.module.css';
 
 const SKILL_FILTERS = [
@@ -19,7 +20,6 @@ interface Agent {
     responseTime: string;
 }
 
-// Demo agents for initial rendering
 const DEMO_AGENTS: Agent[] = [
     { nonce: 1, name: 'ResearchBot Pro', skills: ['RAG', 'Data Analysis'], reputation: 97, totalJobs: 3840, priceUSD: '0.12', status: 'online', responseTime: '1.2s' },
     { nonce: 2, name: 'TranslateX', skills: ['Translation'], reputation: 94, totalJobs: 12500, priceUSD: '0.03', status: 'online', responseTime: '0.8s' },
@@ -48,29 +48,18 @@ export default function DiscoverPage() {
     });
 
     return (
-        <div className={styles.discoverPage}>
-            <nav className={styles.nav}>
-                <div className={`container ${styles.navInner}`}>
-                    <a href="/" className={styles.logo}>
-                        <span className={styles.logoIcon}>⚛</span>
-                        <span className="title-medium">Agent Orchestrator</span>
-                    </a>
-                    <div className={styles.navLinks}>
-                        <a href="/jobs" className="btn btn-text">My Jobs</a>
-                        <button className="btn btn-outlined" id="connect-wallet-btn">Connect Wallet</button>
-                    </div>
-                </div>
-            </nav>
-
-            <main className="container page-content">
+        <div className={styles.shell}>
+            <Sidebar activePage="discover" />
+            <main className={styles.main}>
                 <header className={styles.header}>
-                    <h1 className="headline-large">Discover Agents</h1>
-                    <p className="body-large" style={{ color: 'var(--md-on-surface-dim)' }}>
-                        Browse {DEMO_AGENTS.length} registered agents on the MX-8004 network.
-                    </p>
+                    <div>
+                        <h1 className="headline-large">Discover Agents</h1>
+                        <p className="body-medium" style={{ color: 'var(--md-on-surface-dim)', marginTop: 4 }}>
+                            Browse {DEMO_AGENTS.length} registered agents on the MX-8004 network.
+                        </p>
+                    </div>
                 </header>
 
-                {/* Search + Sort */}
                 <div className={styles.controls}>
                     <input
                         type="text"
@@ -97,7 +86,6 @@ export default function DiscoverPage() {
                     </div>
                 </div>
 
-                {/* Skill Filters */}
                 <div className={styles.filters}>
                     {SKILL_FILTERS.map((skill) => (
                         <button
@@ -111,7 +99,6 @@ export default function DiscoverPage() {
                     ))}
                 </div>
 
-                {/* Agent Grid */}
                 <div className={styles.agentGrid}>
                     {filtered.map((agent) => (
                         <div key={agent.nonce} className={`glass-card ${styles.agentCard}`}>
@@ -122,13 +109,10 @@ export default function DiscoverPage() {
                                 </div>
                                 <span className="badge badge-primary">#{agent.nonce}</span>
                             </div>
-
                             <div className={styles.cardStats}>
                                 <div className={styles.stat}>
                                     <span className={styles.statLabel}>Reputation</span>
-                                    <span className={styles.statValue}>
-                                        ⭐ {agent.reputation}/100
-                                    </span>
+                                    <span className={styles.statValue}>⭐ {agent.reputation}/100</span>
                                 </div>
                                 <div className={styles.stat}>
                                     <span className={styles.statLabel}>Price</span>
@@ -143,15 +127,11 @@ export default function DiscoverPage() {
                                     <span className={styles.statValue}>{agent.responseTime}</span>
                                 </div>
                             </div>
-
                             <div className={styles.cardSkills}>
                                 {agent.skills.map((skill) => (
-                                    <span key={skill} className="chip" style={{ fontSize: 11, padding: '3px 10px' }}>
-                                        {skill}
-                                    </span>
+                                    <span key={skill} className="chip" style={{ fontSize: 11, padding: '3px 10px' }}>{skill}</span>
                                 ))}
                             </div>
-
                             <button className="btn btn-tonal" style={{ width: '100%', marginTop: 'var(--space-md)' }}>
                                 View Profile
                             </button>

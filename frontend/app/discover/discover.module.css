@@ -1,48 +1,17 @@
-.discoverPage {
-    min-height: 100vh;
-}
-
-.nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: var(--space-md) 0;
-    background: rgba(10, 14, 26, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--md-outline-variant);
-}
-
-.navInner {
+.shell {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    height: 100vh;
+    overflow: hidden;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    text-decoration: none;
-    color: var(--md-on-surface);
-}
-
-.logoIcon {
-    font-size: 24px;
-    color: var(--color-primary);
-}
-
-.navLinks {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
+.main {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-xl) var(--space-2xl);
 }
 
 .header {
     margin-bottom: var(--space-xl);
-}
-
-.header h1 {
-    margin-bottom: var(--space-xs);
 }
 
 .controls {
@@ -67,10 +36,9 @@
     margin-bottom: var(--space-xl);
 }
 
-/* Agent Grid */
 .agentGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: var(--space-lg);
 }
 
@@ -136,6 +104,10 @@
 }
 
 @media (max-width: 768px) {
+    .main {
+        padding: var(--space-md);
+    }
+
     .controls {
         flex-direction: column;
         align-items: stretch;

@@ -1,0 +1,231 @@
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background: rgba(10, 14, 26, 0.95);
+    border-right: 1px solid var(--md-outline-variant);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 50;
+}
+
+.open {
+    width: 280px;
+}
+
+.closed {
+    width: 0;
+    border-right: none;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+    flex-shrink: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: var(--md-on-surface);
+}
+
+.logo:hover {
+    text-decoration: none;
+}
+
+.logoIcon {
+    font-size: 22px;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 6px rgba(34, 209, 238, 0.4));
+}
+
+.logoText {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.toggle {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: transparent;
+    border: none;
+    color: var(--md-on-surface-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.toggle:hover {
+    background: var(--color-surface-hover);
+}
+
+.newBtn {
+    margin: var(--space-sm) var(--space-md);
+    width: calc(100% - var(--space-xl));
+    font-size: 13px;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+.newBtn:hover {
+    text-decoration: none;
+}
+
+.nav {
+    padding: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.navItem {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 10px var(--space-md);
+    border-radius: var(--radius-full);
+    color: var(--md-on-surface-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+}
+
+.navItem:hover {
+    background: var(--color-surface-hover);
+    color: var(--md-on-surface);
+    text-decoration: none;
+}
+
+.navItemActive {
+    background: var(--color-primary-dim);
+    color: var(--color-primary);
+}
+
+.jobs {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-sm);
+}
+
+.sectionLabel {
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--md-on-surface-faint);
+}
+
+.jobList {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.jobItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px var(--space-md);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: var(--md-on-surface);
+    transition: background 0.2s;
+}
+
+.jobItem:hover {
+    background: var(--color-surface-hover);
+    text-decoration: none;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.dot_active {
+    background: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
+}
+
+.dot_completed {
+    background: var(--color-success);
+}
+
+.dot_failed {
+    background: var(--color-error);
+}
+
+.jobContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.jobText {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jobMeta {
+    font-size: 11px;
+    color: var(--md-on-surface-faint);
+    white-space: nowrap;
+}
+
+.footer {
+    padding: var(--space-md);
+    border-top: 1px solid var(--md-outline-variant);
+    flex-shrink: 0;
+}
+
+.floatingToggle {
+    position: fixed;
+    top: var(--space-md);
+    left: var(--space-md);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    color: var(--md-on-surface-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+    transition: background 0.2s;
+}
+
+.floatingToggle:hover {
+    background: var(--color-surface-hover);
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        z-index: 100;
+    }
+}

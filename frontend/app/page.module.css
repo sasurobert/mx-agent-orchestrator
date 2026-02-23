@@ -1,36 +1,48 @@
-.landing {
-    position: relative;
+/* ==========================================
+   Gemini-Style App Shell
+   Sidebar + Main Content + Animated BG
+   ========================================== */
+
+/* App Shell — Full viewport grid */
+.appShell {
+    display: flex;
+    height: 100vh;
     overflow: hidden;
 }
 
-/* Ambient glow effect */
-.ambientGlow {
-    position: fixed;
-    top: -200px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 800px;
-    height: 500px;
-    background: radial-gradient(ellipse, rgba(34, 209, 238, 0.08) 0%, transparent 70%);
+/* ==========================================
+   SIDEBAR
+   ========================================== */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background: rgba(10, 14, 26, 0.95);
+    border-right: 1px solid var(--md-outline-variant);
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s;
+    overflow: hidden;
+    flex-shrink: 0;
+    z-index: 50;
+}
+
+.sidebarOpen {
+    width: 280px;
+}
+
+.sidebarClosed {
+    width: 0;
+    border-right: none;
+    opacity: 0;
     pointer-events: none;
-    z-index: 0;
 }
 
-/* Navigation */
-.nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    padding: var(--space-md) 0;
-    background: rgba(10, 14, 26, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--md-outline-variant);
-}
-
-.navInner {
+.sidebarHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+    flex-shrink: 0;
 }
 
 .logo {
@@ -40,58 +52,399 @@
 }
 
 .logoIcon {
-    font-size: 24px;
+    font-size: 22px;
     color: var(--color-primary);
+    filter: drop-shadow(0 0 6px rgba(34, 209, 238, 0.4));
 }
 
-.navLinks {
+.logoText {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--md-on-surface);
+    white-space: nowrap;
+}
+
+.sidebarToggle {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background: transparent;
+    border: none;
+    color: var(--md-on-surface-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+
+.sidebarToggle:hover {
+    background: var(--color-surface-hover);
+}
+
+/* New Job Button */
+.newJobBtn {
+    margin: var(--space-sm) var(--space-md);
+    width: calc(100% - var(--space-xl));
+    font-size: 13px;
+    padding: 10px 20px;
+}
+
+/* Sidebar Nav */
+.sidebarNav {
+    padding: var(--space-sm) var(--space-sm);
+    flex-shrink: 0;
+}
+
+.navItem {
     display: flex;
     align-items: center;
     gap: var(--space-sm);
+    padding: 10px var(--space-md);
+    border-radius: var(--radius-full);
+    color: var(--md-on-surface-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
 }
 
-/* Hero */
-.hero {
+.navItem:hover {
+    background: var(--color-surface-hover);
+    color: var(--md-on-surface);
+    text-decoration: none;
+}
+
+/* Jobs Section */
+.jobsSection {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-sm) var(--space-sm);
+}
+
+.sectionLabel {
+    display: block;
+    padding: var(--space-sm) var(--space-md);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--md-on-surface-faint);
+}
+
+.jobList {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.jobItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px var(--space-md);
+    border-radius: var(--radius-lg);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+    width: 100%;
+}
+
+.jobItem:hover {
+    background: var(--color-surface-hover);
+}
+
+.jobItemActive {
+    background: var(--color-primary-dim);
+}
+
+.jobDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+}
+
+.jobDot_active {
+    background: var(--color-primary);
+    box-shadow: 0 0 6px var(--color-primary);
+}
+
+.jobDot_completed {
+    background: var(--color-success);
+}
+
+.jobDot_failed {
+    background: var(--color-error);
+}
+
+.jobItemContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+}
+
+.jobItemText {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--md-on-surface);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jobItemMeta {
+    font-size: 11px;
+    color: var(--md-on-surface-faint);
+    white-space: nowrap;
+}
+
+.sidebarFooter {
+    padding: var(--space-md);
+    border-top: 1px solid var(--md-outline-variant);
+    flex-shrink: 0;
+}
+
+/* ==========================================
+   MAIN CONTENT
+   ========================================== */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Vanta.js Background */
+.vantaBg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+/* Floating toggle */
+.floatingToggle {
+    position: absolute;
+    top: var(--space-md);
+    left: var(--space-md);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    color: var(--md-on-surface-dim);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.2s;
+}
+
+.floatingToggle:hover {
+    background: var(--color-surface-hover);
+}
+
+/* Main Content */
+.mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-2xl);
     position: relative;
     z-index: 1;
-    text-align: center;
-    padding: var(--space-3xl) 0 var(--space-2xl);
-}
-
-.heroTitle {
-    margin-bottom: var(--space-lg);
-}
-
-.accentText {
-    color: var(--color-primary);
-}
-
-.heroSubtitle {
-    color: var(--md-on-surface-dim);
-    max-width: 640px;
-    margin: 0 auto var(--space-xl);
-}
-
-/* Request Bar */
-.requestBar {
-    display: flex;
-    gap: var(--space-sm);
-    max-width: 720px;
+    max-width: 800px;
     margin: 0 auto;
+    width: 100%;
 }
 
-.requestBar .input-glass {
-    flex: 1;
+/* ==========================================
+   GREETING — Gemini Style
+   ========================================== */
+.greeting {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sendBtn {
+.greetingTitle {
+    font-family: var(--font-display);
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+}
+
+.greetingGradient {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #A78BFA 50%, var(--color-primary) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.greetingSubtitle {
+    font-size: 16px;
+    color: var(--md-on-surface-dim);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ==========================================
+   SUGGESTION CARDS
+   ========================================== */
+.suggestions {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 640px;
+    animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+}
+
+.suggestionCard {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--md-on-surface);
+}
+
+.suggestionCard:hover {
+    background: var(--color-surface-hover);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.suggestionIcon {
+    font-size: 24px;
     flex-shrink: 0;
-    padding: 10px 28px;
+    margin-top: 2px;
+}
+
+.suggestionText {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--md-on-surface-dim);
+}
+
+/* ==========================================
+   BOTTOM INPUT BAR — Gemini Style
+   ========================================== */
+.inputArea {
+    padding: 0 var(--space-2xl) var(--space-lg);
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.inputBar {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--space-sm);
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-sm) var(--space-sm) var(--space-sm) var(--space-lg);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.inputBar:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: var(--color-primary-glow);
+}
+
+.inputField {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--md-on-surface);
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.5;
+    resize: none;
+    min-height: 24px;
+    max-height: 200px;
+    padding: 8px 0;
+}
+
+.inputField::placeholder {
+    color: var(--md-on-surface-faint);
+}
+
+.inputActions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+}
+
+.sendButton {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+}
+
+.sendButton:hover:not(:disabled) {
+    filter: brightness(1.15);
+    box-shadow: var(--color-primary-glow);
+}
+
+.sendButton:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
 }
 
 .spinner {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     border: 2px solid var(--color-on-primary);
     border-top-color: transparent;
     border-radius: 50%;
@@ -104,91 +457,50 @@
     }
 }
 
-/* Quick Prompts */
-.quickPrompts {
-    display: flex;
-    gap: var(--space-sm);
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: var(--space-lg);
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Features */
-.features {
-    position: relative;
-    z-index: 1;
-    padding: var(--space-2xl) 0;
-}
-
-.featureGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
-}
-
-.featureCard {
-    padding: var(--space-xl);
-    text-align: left;
-}
-
-.featureIcon {
-    font-size: 36px;
-    margin-bottom: var(--space-md);
-}
-
-.featureCard h3 {
-    margin-bottom: var(--space-sm);
-}
-
-/* Stats */
-.stats {
-    position: relative;
-    z-index: 1;
-    padding: var(--space-2xl) 0;
-}
-
-.statsGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-lg);
+.disclaimer {
     text-align: center;
+    font-size: 12px;
+    color: var(--md-on-surface-faint);
+    margin-top: var(--space-sm);
 }
 
-.statItem {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xs);
+/* ==========================================
+   Animations
+   ========================================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.statValue {
-    color: var(--color-primary);
-}
-
-/* Footer */
-.footer {
-    padding: var(--space-xl) 0;
-    text-align: center;
-    border-top: 1px solid var(--md-outline-variant);
-}
-
-/* Responsive */
+/* ==========================================
+   Responsive
+   ========================================== */
 @media (max-width: 768px) {
-    .featureGrid {
+    .sidebar {
+        position: fixed;
+        z-index: 100;
+    }
+
+    .sidebarClosed {
+        width: 0;
+    }
+
+    .greetingTitle {
+        font-size: 32px;
+    }
+
+    .suggestions {
         grid-template-columns: 1fr;
     }
 
-    .statsGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .requestBar {
-        flex-direction: column;
-    }
-
-    .navLinks {
-        display: none;
+    .inputArea {
+        padding: 0 var(--space-md) var(--space-md);
     }
 }

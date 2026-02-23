@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Sidebar } from '../components/Sidebar';
 import styles from './job.module.css';
 
 type TaskStatus = 'completed' | 'active' | 'pending';
@@ -22,7 +23,7 @@ const DEMO_TASKS: PipelineTask[] = [
 ];
 
 export default function JobPage() {
-    const [tasks, setTasks] = useState<PipelineTask[]>(DEMO_TASKS);
+    const [tasks] = useState<PipelineTask[]>(DEMO_TASKS);
     const [showPayment, setShowPayment] = useState(false);
 
     const totalCost = tasks.reduce((sum, t) => sum + parseFloat(t.price), 0).toFixed(2);
@@ -30,22 +31,10 @@ export default function JobPage() {
     const progress = Math.round((completedCount / tasks.length) * 100);
 
     return (
-        <div className={styles.jobPage}>
-            <nav className={styles.nav}>
-                <div className={`container ${styles.navInner}`}>
-                    <a href="/" className={styles.logo}>
-                        <span className={styles.logoIcon}>⚛</span>
-                        <span className="title-medium">Agent Orchestrator</span>
-                    </a>
-                    <div className={styles.navLinks}>
-                        <a href="/discover" className="btn btn-text">Discover</a>
-                        <button className="btn btn-outlined" id="connect-wallet-btn">Connect Wallet</button>
-                    </div>
-                </div>
-            </nav>
+        <div className={styles.shell}>
+            <Sidebar activePage="job" />
 
-            <main className="container page-content">
-                {/* Header */}
+            <main className={styles.main}>
                 <header className={styles.header}>
                     <div>
                         <h1 className="headline-large">Active Job</h1>
@@ -56,12 +45,10 @@ export default function JobPage() {
                     <span className="badge badge-primary">{progress}% Complete</span>
                 </header>
 
-                {/* Progress Bar */}
                 <div className={styles.progressBar}>
                     <div className={styles.progressFill} style={{ width: `${progress}%` }} />
                 </div>
 
-                {/* Pipeline */}
                 <section className={styles.pipelineSection}>
                     <h2 className="title-large" style={{ marginBottom: 'var(--space-lg)' }}>Task Pipeline</h2>
                     <div className="pipeline">
@@ -80,7 +67,6 @@ export default function JobPage() {
                     </div>
                 </section>
 
-                {/* Agent Assignment Cards */}
                 <section className={styles.agentSection}>
                     <h2 className="title-large" style={{ marginBottom: 'var(--space-lg)' }}>Agent Assignments</h2>
                     <div className={styles.agentGrid}>
@@ -95,20 +81,14 @@ export default function JobPage() {
                                         {task.status}
                                     </span>
                                 </div>
-
                                 <div className={styles.agentInfo}>
-                                    <div className={styles.agentAvatar}>
-                                        {task.agentName.charAt(0)}
-                                    </div>
+                                    <div className={styles.agentAvatar}>{task.agentName.charAt(0)}</div>
                                     <div>
                                         <span className="body-medium" style={{ fontWeight: 500 }}>{task.agentName}</span>
-                                        <span className="label-medium" style={{ color: 'var(--md-on-surface-dim)' }}>
-                                            ⭐ {task.agentReputation}/100
-                                        </span>
+                                        <span className="label-medium" style={{ color: 'var(--md-on-surface-dim)' }}>⭐ {task.agentReputation}/100</span>
                                     </div>
                                     <span className={styles.price}>${task.price}</span>
                                 </div>
-
                                 {task.result && (
                                     <div className={styles.resultPreview}>
                                         <span className="label-small" style={{ color: 'var(--color-success)' }}>Result</span>
@@ -120,64 +100,36 @@ export default function JobPage() {
                     </div>
                 </section>
 
-                {/* Cost Summary */}
                 <section className={`glass-card-elevated ${styles.costSummary}`}>
                     <div className={styles.costLeft}>
                         <span className="label-medium" style={{ color: 'var(--md-on-surface-faint)' }}>TOTAL COST</span>
-                        <span className="headline-large" style={{ color: 'var(--color-primary)' }}>
-                            ${totalCost} USDC
-                        </span>
-                        <span className="body-medium" style={{ color: 'var(--md-on-surface-dim)' }}>
-                            {tasks.length} tasks · {tasks.length} agents hired
-                        </span>
+                        <span className="headline-large" style={{ color: 'var(--color-primary)' }}>${totalCost} USDC</span>
+                        <span className="body-medium" style={{ color: 'var(--md-on-surface-dim)' }}>{tasks.length} tasks · {tasks.length} agents</span>
                     </div>
                     <div className={styles.costActions}>
-                        <button
-                            className="btn btn-filled"
-                            onClick={() => setShowPayment(true)}
-                            id="submit-payment-btn"
-                        >
+                        <button className="btn btn-filled" onClick={() => setShowPayment(true)} id="submit-payment-btn">
                             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                 <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
                             </svg>
                             Submit Payment
                         </button>
-                        <button className="btn btn-outlined">
-                            View Breakdown
-                        </button>
+                        <button className="btn btn-outlined">View Breakdown</button>
                     </div>
                 </section>
 
-                {/* Payment Confirmation Modal */}
                 {showPayment && (
                     <div className={styles.modalOverlay} onClick={() => setShowPayment(false)}>
                         <div className={`glass-card-elevated ${styles.modal}`} onClick={(e) => e.stopPropagation()}>
                             <h2 className="headline-medium" style={{ marginBottom: 'var(--space-lg)' }}>Confirm Payment</h2>
                             <div className={styles.modalDetails}>
-                                <div className={styles.modalRow}>
-                                    <span className="body-medium">Total Amount</span>
-                                    <span className="title-medium" style={{ color: 'var(--color-primary)' }}>${totalCost} USDC</span>
-                                </div>
-                                <div className={styles.modalRow}>
-                                    <span className="body-medium">Protocol</span>
-                                    <span className="title-medium">x402 (MultiversX)</span>
-                                </div>
-                                <div className={styles.modalRow}>
-                                    <span className="body-medium">Agents</span>
-                                    <span className="title-medium">{tasks.length} agents</span>
-                                </div>
-                                <div className={styles.modalRow}>
-                                    <span className="body-medium">Escrow</span>
-                                    <span className="badge badge-success">Protected</span>
-                                </div>
+                                <div className={styles.modalRow}><span className="body-medium">Total</span><span className="title-medium" style={{ color: 'var(--color-primary)' }}>${totalCost} USDC</span></div>
+                                <div className={styles.modalRow}><span className="body-medium">Protocol</span><span className="title-medium">x402 (MultiversX)</span></div>
+                                <div className={styles.modalRow}><span className="body-medium">Agents</span><span className="title-medium">{tasks.length}</span></div>
+                                <div className={styles.modalRow}><span className="body-medium">Escrow</span><span className="badge badge-success">Protected</span></div>
                             </div>
                             <div className={styles.modalActions}>
-                                <button className="btn btn-filled" style={{ flex: 1 }}>
-                                    Sign & Pay
-                                </button>
-                                <button className="btn btn-outlined" onClick={() => setShowPayment(false)} style={{ flex: 1 }}>
-                                    Cancel
-                                </button>
+                                <button className="btn btn-filled" style={{ flex: 1 }}>Sign & Pay</button>
+                                <button className="btn btn-outlined" onClick={() => setShowPayment(false)} style={{ flex: 1 }}>Cancel</button>
                             </div>
                         </div>
                     </div>
