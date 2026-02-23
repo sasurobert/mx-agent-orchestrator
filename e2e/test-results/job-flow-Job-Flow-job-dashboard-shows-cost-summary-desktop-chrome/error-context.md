@@ -1,0 +1,122 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]
+  - button "Switch network" [ref=e13] [cursor=pointer]:
+    - generic [ref=e15]: Devnet
+    - img [ref=e16]
+  - generic [ref=e18]:
+    - complementary [ref=e19]:
+      - generic [ref=e20]:
+        - link "⚛ Orchestrator" [ref=e21] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e22]: ⚛
+          - generic [ref=e23]: Orchestrator
+        - button "Toggle sidebar" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+      - link "New Request" [ref=e27] [cursor=pointer]:
+        - /url: /
+        - img [ref=e28]
+        - text: New Request
+      - navigation [ref=e30]:
+        - link "Discover Agents" [ref=e31] [cursor=pointer]:
+          - /url: /discover
+          - img [ref=e32]
+          - text: Discover Agents
+      - generic [ref=e35]:
+        - generic [ref=e36]: Recent Jobs
+        - generic [ref=e37]:
+          - link "Find top 5 AI coding assistants 3 agents · $0.35 · 2 min ago" [ref=e38] [cursor=pointer]:
+            - /url: /job
+            - generic [ref=e40]:
+              - generic [ref=e41]: Find top 5 AI coding assistants
+              - generic [ref=e42]: 3 agents · $0.35 · 2 min ago
+          - link "Translate docs to 5 languages 3 agents · $0.09 · 1h ago" [ref=e43] [cursor=pointer]:
+            - /url: /job
+            - generic [ref=e45]:
+              - generic [ref=e46]: Translate docs to 5 languages
+              - generic [ref=e47]: 3 agents · $0.09 · 1h ago
+          - link "Audit DeFi smart contract 1 agent · $1.20 · 3h ago" [ref=e48] [cursor=pointer]:
+            - /url: /job
+            - generic [ref=e50]:
+              - generic [ref=e51]: Audit DeFi smart contract
+              - generic [ref=e52]: 1 agent · $1.20 · 3h ago
+          - link "Research competitor pricing 2 agents · $0.00 · Yesterday" [ref=e53] [cursor=pointer]:
+            - /url: /job
+            - generic [ref=e55]:
+              - generic [ref=e56]: Research competitor pricing
+              - generic [ref=e57]: 2 agents · $0.00 · Yesterday
+          - link "Generate marketing copy 2 agents · $0.06 · 2 days ago" [ref=e58] [cursor=pointer]:
+            - /url: /job
+            - generic [ref=e60]:
+              - generic [ref=e61]: Generate marketing copy
+              - generic [ref=e62]: 2 agents · $0.06 · 2 days ago
+      - button "Connect Wallet" [ref=e64] [cursor=pointer]
+    - main [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - heading "Active Job" [level=1] [ref=e68]
+          - paragraph [ref=e69]: “Find and compare top 5 AI coding assistants”
+        - generic [ref=e70]: 33% Complete
+      - generic [ref=e73]:
+        - heading "Task Pipeline" [level=2] [ref=e74]
+        - generic [ref=e75]:
+          - generic [ref=e77]: ✓ Research AI Coding Tools
+          - generic [ref=e80]: ● Analyze Pricing Models
+          - generic [ref=e83]: Generate Comparison Report
+      - generic [ref=e84]:
+        - heading "Agent Assignments" [level=2] [ref=e85]
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - generic [ref=e89]:
+                - text: TASK-1
+                - heading "Research AI Coding Tools" [level=3] [ref=e90]
+              - generic [ref=e91]: completed
+            - generic [ref=e92]:
+              - generic [ref=e93]: R
+              - generic [ref=e94]:
+                - generic [ref=e95]: ResearchBot Pro
+                - generic [ref=e96]: ⭐ 97/100
+              - generic [ref=e97]: $0.12
+            - generic [ref=e98]:
+              - text: Result
+              - paragraph [ref=e99]: "Found 5 top tools: Cursor, Copilot, Codeium, Tabnine, Windsurf"
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]:
+                - text: TASK-2
+                - heading "Analyze Pricing Models" [level=3] [ref=e103]
+              - generic [ref=e104]: active
+            - generic [ref=e105]:
+              - generic [ref=e106]: D
+              - generic [ref=e107]:
+                - generic [ref=e108]: DataForge
+                - generic [ref=e109]: ⭐ 88/100
+              - generic [ref=e110]: $0.15
+          - generic [ref=e111]:
+            - generic [ref=e112]:
+              - generic [ref=e113]:
+                - text: TASK-3
+                - heading "Generate Comparison Report" [level=3] [ref=e114]
+              - generic [ref=e115]: pending
+            - generic [ref=e116]:
+              - generic [ref=e117]: C
+              - generic [ref=e118]:
+                - generic [ref=e119]: ContentCraft
+                - generic [ref=e120]: ⭐ 91/100
+              - generic [ref=e121]: $0.08
+      - generic [ref=e122]:
+        - generic [ref=e123]:
+          - generic [ref=e124]: TOTAL COST
+          - generic [ref=e125]: $0.35 USDC
+          - generic [ref=e126]: 3 tasks · 3 agents
+        - generic [ref=e127]:
+          - button "Submit Payment" [ref=e128] [cursor=pointer]:
+            - img [ref=e129]
+            - text: Submit Payment
+          - button "View Breakdown" [ref=e131] [cursor=pointer]
+```

@@ -6,7 +6,7 @@ test.describe('Discover Agents Page', () => {
         await page.waitForLoadState('networkidle');
 
         // Page title/header should indicate discovery
-        await expect(page.locator('text=Discover')).toBeVisible();
+        await expect(page.getByRole('heading', { name: /discover/i })).toBeVisible();
 
         // Should have agent cards
         const cards = page.locator('[class*="card"], [class*="agent"]');
@@ -51,6 +51,6 @@ test.describe('Discover Agents Page', () => {
         await page.click('text=Discover Agents');
         await page.waitForURL('/discover');
 
-        await expect(page.locator('text=Discover')).toBeVisible();
+        await expect(page.getByRole('heading', { name: /discover/i })).toBeVisible();
     });
 });

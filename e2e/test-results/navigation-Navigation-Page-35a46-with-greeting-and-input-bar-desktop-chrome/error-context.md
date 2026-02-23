@@ -1,0 +1,76 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]
+  - button "Switch network" [ref=e13] [cursor=pointer]:
+    - generic [ref=e15]: Devnet
+    - img [ref=e16]
+  - generic [ref=e18]:
+    - complementary [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: ⚛
+          - generic [ref=e23]: Orchestrator
+        - button "Toggle sidebar" [ref=e24] [cursor=pointer]:
+          - img [ref=e25]
+      - button "New Request" [ref=e27] [cursor=pointer]:
+        - img [ref=e28]
+        - text: New Request
+      - navigation [ref=e30]:
+        - link "Discover Agents" [ref=e31] [cursor=pointer]:
+          - /url: /discover
+          - img [ref=e32]
+          - text: Discover Agents
+      - generic [ref=e35]:
+        - generic [ref=e36]: Recent Jobs
+        - generic [ref=e37]:
+          - button "Find top 5 AI coding assistants 3 agents · $0.35 · 2 min ago" [ref=e38] [cursor=pointer]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: Find top 5 AI coding assistants
+              - generic [ref=e42]: 3 agents · $0.35 · 2 min ago
+          - button "Translate docs to 5 languages 3 agents · $0.09 · 1h ago" [ref=e43] [cursor=pointer]:
+            - generic [ref=e45]:
+              - generic [ref=e46]: Translate docs to 5 languages
+              - generic [ref=e47]: 3 agents · $0.09 · 1h ago
+          - button "Audit DeFi smart contract 1 agent · $1.20 · 3h ago" [ref=e48] [cursor=pointer]:
+            - generic [ref=e50]:
+              - generic [ref=e51]: Audit DeFi smart contract
+              - generic [ref=e52]: 1 agent · $1.20 · 3h ago
+          - button "Research competitor pricing 2 agents · $0.00 · Yesterday" [ref=e53] [cursor=pointer]:
+            - generic [ref=e55]:
+              - generic [ref=e56]: Research competitor pricing
+              - generic [ref=e57]: 2 agents · $0.00 · Yesterday
+          - button "Generate marketing copy 2 agents · $0.06 · 2 days ago" [ref=e58] [cursor=pointer]:
+            - generic [ref=e60]:
+              - generic [ref=e61]: Generate marketing copy
+              - generic [ref=e62]: 2 agents · $0.06 · 2 days ago
+      - button "Connect Wallet" [ref=e64] [cursor=pointer]
+    - main [ref=e65]:
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - heading "Hello there" [level=1] [ref=e69]
+          - paragraph [ref=e70]: What can I help you with? Describe a task and I'll decompose it, find the best agents, and handle payments.
+        - generic [ref=e71]:
+          - button "🔍 Research top AI coding tools and compare pricing" [ref=e72] [cursor=pointer]:
+            - generic [ref=e73]: 🔍
+            - generic [ref=e74]: Research top AI coding tools and compare pricing
+          - button "🌐 Translate my documentation to 5 languages" [ref=e75] [cursor=pointer]:
+            - generic [ref=e76]: 🌐
+            - generic [ref=e77]: Translate my documentation to 5 languages
+          - button "🛡️ Audit this smart contract for vulnerabilities" [ref=e78] [cursor=pointer]:
+            - generic [ref=e79]: 🛡️
+            - generic [ref=e80]: Audit this smart contract for vulnerabilities
+          - button "📊 Analyze competitor market positioning" [ref=e81] [cursor=pointer]:
+            - generic [ref=e82]: 📊
+            - generic [ref=e83]: Analyze competitor market positioning
+      - generic [ref=e84]:
+        - generic [ref=e85]:
+          - textbox "Enter your request for AI agents" [ref=e86]:
+            - /placeholder: Describe what you need...
+          - button "Send request" [disabled] [ref=e88]:
+            - img [ref=e89]
+        - paragraph [ref=e91]: Agents execute tasks on-chain via MX-8004. Payments are escrowed until results are validated.
+```

@@ -71,7 +71,7 @@ test.describe('Navigation & Page Loading', () => {
         await page.waitForURL('/discover');
 
         // Verify discover page content
-        await expect(page.locator('text=Discover')).toBeVisible();
+        await expect(page.getByRole('heading', { name: /discover/i })).toBeVisible();
     });
 
     test('navigate to job dashboard via sidebar', async ({ page }) => {
@@ -90,7 +90,7 @@ test.describe('Navigation & Page Loading', () => {
         await page.goto('/discover');
         await page.waitForLoadState('networkidle');
 
-        await expect(page.locator('text=Discover')).toBeVisible();
+        await expect(page.getByRole('heading', { name: /discover/i })).toBeVisible();
         await expect(page.locator('text=Orchestrator')).toBeVisible();
     });
 

@@ -6,29 +6,23 @@ export default defineConfig({
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
     workers: process.env.CI ? 1 : undefined,
-    reporter: 'html',
+    reporter: [['list'], ['html', { open: 'never' }]],
+    timeout: 30000,
 
     use: {
-        baseURL: 'http://localhost:3000',
+        baseURL: 'http://localhost:3100',
         trace: 'on-first-retry',
         screenshot: 'only-on-failure',
         video: 'on-first-retry',
     },
 
-    webServer: [
-        {
-            command: 'cd ../backend && npx ts-node src/server.ts',
-            port: 4000,
-            reuseExistingServer: true,
-            timeout: 15000,
-        },
-        {
-            command: 'cd ../frontend && npm run dev',
-            port: 3000,
-            reuseExistingServer: true,
-            timeout: 30000,
-        },
-    ],
+    /* Start the frontend dev server on port 3100 if not already running */
+    webServer: {
+        command: 'cd ../frontend && PORT=3100 npm run dev',
+        port: 3100,
+        reuseExistingServer: true,
+        timeout: 60000,
+    },
 
     projects: [
         {
