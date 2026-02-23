@@ -1,0 +1,20 @@
+{
+    "name": "mx-agent-orchestrator",
+    "version": "1.0.0",
+    "description": "MultiversX Agent Orchestrator — Hire verified agents with micropayments",
+    "author": "MultiversX",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "dev": "bash scripts/dev.sh",
+        "build": "bash scripts/build.sh",
+        "test": "npm run test:backend && npm run test:frontend",
+        "test:backend": "cd backend && npm test",
+        "test:frontend": "cd frontend && npm test",
+        "test:coverage": "cd backend && npm run test:coverage",
+        "lint": "cd backend && npx tsc --noEmit && cd ../frontend && npx tsc --noEmit"
+    },
+    "engines": {
+        "node": ">=22.0.0"
+    }
+}
