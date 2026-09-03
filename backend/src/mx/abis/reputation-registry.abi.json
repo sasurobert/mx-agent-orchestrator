@@ -279,6 +279,32 @@
             ]
         },
         {
+            "docs": [
+                "Paginated list of client addresses who gave feedback to an agent. `from` = start index, `size` = max items (capped at 100)."
+            ],
+            "name": "getFeedbackClientsPage",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "agent_nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "from",
+                    "type": "u64"
+                },
+                {
+                    "name": "size",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "List<Address>"
+                }
+            ]
+        },
+        {
             "name": "set_identity_contract_address",
             "onlyOwner": true,
             "mutability": "mutable",

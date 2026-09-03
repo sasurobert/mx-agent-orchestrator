@@ -21,16 +21,18 @@ export class PaymentService {
             const jobId = uuidv4();
             jobIds.push(jobId);
 
+            const isNativeEgld = assignment.token === 'EGLD';
+
             return {
                 scheme: 'exact' as const,
                 payload: {
                     nonce: 0,
-                    value: assignment.price,
+                    value: isNativeEgld ? assignment.price : assignment.price,
                     receiver: '', // Will be resolved from IdentityRegistry
                     sender: request.senderAddress,
                     gasPrice: 1000000000,
-                    gasLimit: 12000000,
-                    data: this.encodeMultiESDTTransfer(assignment.token, assignment.price),
+                    gasLimit: isNativeEgld ? 50000 : 12000000,
+                    data: isNativeEgld ? '' : this.encodeMultiESDTTransfer(assignment.token, assignment.price),
                     chainID: this.chainId,
                     version: 1 as const,
                     options: 0 as const,
@@ -41,7 +43,7 @@ export class PaymentService {
                     asset: assignment.token,
                     network: `multiversx:${this.chainId}`,
                     extra: {
-                        assetTransferMethod: 'esdt' as const,
+                        assetTransferMethod: isNativeEgld ? ('direct' as const) : ('esdt' as const),
                     },
                 },
             };
@@ -66,8 +68,14 @@ export class PaymentService {
             .toString();
     }
 
-    private encodeMultiESDTTransfer(token: string, amount: string): string {
-        // Simplified encoding — real implementation would use sdk-core TransactionPayload
-        return `MultiESDTNFTTransfer@${Buffer.from(token).toString('hex')}@00@${BigInt(amount).toString(16)}`;
+    private encodeMultiESDTTransfer(token: string, amount: string, destinationHex: string = ''): string {
+        const tokenHex = Buffer.from(token).toString('hex');
+        let amountHex = BigInt(amount).toString(16);
+        if (amountHex.length % 2 !== 0) amountHex = '0' + amountHex;
+
+        if (destinationHex) {
+            return `MultiESDTNFTTransfer@${destinationHex}@01@${tokenHex}@00@${amountHex}`;
+        }
+        return `MultiESDTNFTTransfer@${tokenHex}@00@${amountHex}`;
     }
 }
